@@ -57,26 +57,19 @@ const client = new Client({
 });
 
 client.on('message', msg => {
-  if (msg.body == '!ping') {
-    msg.reply('pong');
-  } else if (msg.body == 'good morning') {
-    msg.reply('selamat pagi');
-  } else if (msg.body == '!groups') {
-    client.getChats().then(chats => {
-      const groups = chats.filter(chat => chat.isGroup);
-
-      if (groups.length == 0) {
-        msg.reply('You have no group yet.');
-      } else {
-        let replyMsg = '*YOUR GROUPS*\n\n';
-        groups.forEach((group, i) => {
-          replyMsg += `ID: ${group.id._serialized}\nName: ${group.name}\n\n`;
-        });
-        replyMsg += '_You can use the group id to send a message to the group._'
-        msg.reply(replyMsg);
-      }
+  if (msg.body == 'ping') {
+    msg.sendMessage('pong');
+  } else if (msg.body == 'bom dia') {
+    msg.sendMessage('Bom dia!');
+  } else if (msg.body == '1') {
+    msg.sendMessage('Consigo fazer várias coisas.. Desde envios automáticos e até agendamentos.. legal né?😃')
+  } else if (msg.body == '2') {
+    msg.sendMessage('5565993599565');
+  } else if (msg.body != null || msg.body == '0' || msg.type != 'ciphertext') {
+    msg.sendMessage('Olá tudo bem? Eu sou um robô de auto-atendimento..🤖\n\rDigite 1 para listar todas as minhas capacidades.\n\rDigite 2 para falar com meu desenvolvedor.')
+  } 
     });
-  }
+  
 
   // NOTE!
   // UNCOMMENT THE SCRIPT BELOW IF YOU WANT TO SAVE THE MESSAGE MEDIA FILES
@@ -116,7 +109,7 @@ client.on('message', msg => {
   //     }
   //   });
   // }
-});
+
 
 client.initialize();
 
